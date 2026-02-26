@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Tv, Users, Home, Search as SearchIcon } from 'lucide-react';
+import { Tv, Home, Search as SearchIcon } from 'lucide-react';
 import "../App.css";
 
 const NavBar = () => {

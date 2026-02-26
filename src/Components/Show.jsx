@@ -7,24 +7,24 @@ function Show() {
   const [showData, setShowData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const getShowData = async () => {
-    if (!inputVal) {
-      setShowData([]);
-      return;
-    }
-    setLoading(true);
-    try {
-      const response = await fetch(`https://api.tvmaze.com/search/shows?q=${inputVal}`);
-      const resData = await response.json();
-      setShowData(resData);
-    } catch (error) {
-      console.error("Error fetching shows:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const getShowData = async () => {
+      if (!inputVal) {
+        setShowData([]);
+        return;
+      }
+      setLoading(true);
+      try {
+        const response = await fetch(`https://api.tvmaze.com/search/shows?q=${inputVal}`);
+        const resData = await response.json();
+        setShowData(resData);
+      } catch (error) {
+        console.error("Error fetching shows:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     const timeoutId = setTimeout(() => {
       getShowData();
     }, 500);

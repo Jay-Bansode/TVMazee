@@ -7,24 +7,24 @@ function Actor() {
   const [actorsData, setActorsData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const getActorsData = async () => {
-    if (!inputVal) {
-      setActorsData([]);
-      return;
-    }
-    setLoading(true);
-    try {
-      const response = await fetch(`https://api.tvmaze.com/search/people?q=${inputVal}`);
-      const resData = await response.json();
-      setActorsData(resData);
-    } catch (error) {
-      console.error("Error fetching actors:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const getActorsData = async () => {
+      if (!inputVal) {
+        setActorsData([]);
+        return;
+      }
+      setLoading(true);
+      try {
+        const response = await fetch(`https://api.tvmaze.com/search/people?q=${inputVal}`);
+        const resData = await response.json();
+        setActorsData(resData);
+      } catch (error) {
+        console.error("Error fetching actors:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     const timeoutId = setTimeout(() => {
       getActorsData();
     }, 500);
